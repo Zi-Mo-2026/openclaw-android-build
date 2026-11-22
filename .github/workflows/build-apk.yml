@@ -52,11 +52,7 @@ jobs:
           cp apps/android/app/build/outputs/apk/thirdParty/release/*.apk dist/OpenClaw-Zimo.apk
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs dist/OpenClaw-Zimo.apk | tee dist/signature.txt
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging dist/OpenClaw-Zimo.apk > dist/package-info.txt
-          printf 'Upstream: https://github.com/openclaw/openclaw
-Commit: %s
-Build: %s/%s/actions/runs/%s
-Personal build signed by Zi-Mo-2026; not an official OpenClaw release.
-' "$SOURCE_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > dist/BUILD-INFO.txt
+          printf 'Upstream: https://github.com/openclaw/openclaw\nCommit: %s\nBuild: %s/%s/actions/runs/%s\nPersonal build signed by Zi-Mo-2026; not an official OpenClaw release.\n' "$SOURCE_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > dist/BUILD-INFO.txt
           cd dist
           sha256sum OpenClaw-Zimo.apk > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
